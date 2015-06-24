@@ -4,6 +4,11 @@
 *.obj
 *.elf
 
+# Cosmic compiler specific files
+*.ls
+*.sm8
+*.map
+
 # Precompiled Headers
 *.gch
 *.pch
