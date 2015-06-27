@@ -1,3 +1,5 @@
+..\..\src\onewire.c
+..\..\src\ds18b20.c
 ..\..\src\hx711.c
 ..\..\src\hd44780.c
 ..\..\..\..\libraries\stm8s_stdperiph_driver\src\stm8s_clk.c
@@ -13,6 +15,8 @@
 ..\..\src\main.c
 ..\..\src\stm8_interrupt_vector.c
 ..\..\src\stm8s_it.c
+..\..\src\onewire.h
+..\..\src\ds18b20.h
 ..\..\src\hx711.h
 ..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s_wwdg.h
 ..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s_adc2.h

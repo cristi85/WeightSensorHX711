@@ -3,6 +3,16 @@
 
 #include "board.h"
 
+#define DELAY_480US (u16)1229
+#define DELAY_70US  (u16)179
+#define DELAY_410US (u16)1050
+#define DELAY_6US   (u8)15
+#define DELAY_64US  (u16)164
+#define DELAY_60US  (u16)154
+#define DELAY_10US  (u8)26
+//#define DELAY_15US  (u8)80
+#define DELAY_9US   (u8)23
+#define DELAY_55US  (u16)141
 void delay_ms(u16);
 void delay_10us(u16);
 
@@ -24,6 +34,6 @@ void delay_10us(u16);
 */
 
 
-#define DELAY_US(loops) _asm("$N: \n decw X \n jrne $L \n nop", (u16)(loops*2.56));
+#define DELAY_US( loops ) _asm("$N: \n decw X \n jrne $L \n nop", (u16)loops);
 
 #endif

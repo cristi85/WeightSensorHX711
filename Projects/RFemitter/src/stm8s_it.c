@@ -27,6 +27,17 @@
 #include "timeout.h"
 #include "errors.h"
 
+/* Periodic Tasks */
+#define CNTVAL_250MS  (u16)125
+_Bool FLAG_250ms = FALSE;
+u16 cnt_flag_250ms = 0;
+#define CNTVAL_500MS  (u16)250
+_Bool FLAG_500ms = FALSE;
+u16 cnt_flag_500ms = 0;
+#define CNTVAL_1000MS (u16)500
+_Bool FLAG_1000ms = FALSE;
+u16 cnt_flag_1000ms = 0;
+/*================*/
 
 // ===== RF Receive =====
 #define RF_START_PULSE_MIN (u16)1100
@@ -599,6 +610,25 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)     /* once every 2MS */
   /* In order to detect unexpected events during development,
   it is recommended to set a breakpoint on the following instruction.
   */
+  /* ===== CKECK PERIODIC TASKS FLAGS ===== */
+    if(cnt_flag_250ms < U16_MAX) cnt_flag_250ms++;
+    if(cnt_flag_250ms >= CNTVAL_250MS) 
+    {
+      cnt_flag_250ms = 0;
+      FLAG_250ms = TRUE;
+    }
+    if(cnt_flag_500ms < U16_MAX) cnt_flag_500ms++;
+    if(cnt_flag_500ms >= CNTVAL_500MS) 
+    {
+      cnt_flag_500ms = 0;
+      FLAG_500ms = TRUE;
+    }
+    if(cnt_flag_1000ms < U16_MAX) cnt_flag_1000ms++;
+    if(cnt_flag_1000ms >= CNTVAL_1000MS) 
+    {
+      cnt_flag_1000ms = 0;
+      FLAG_1000ms = TRUE;
+    }
   /* ===== CHECK TIMEOUTS ===== */
     if(!Timeout_istout1)
     {

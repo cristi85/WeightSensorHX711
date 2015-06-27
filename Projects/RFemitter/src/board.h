@@ -51,6 +51,15 @@
 #define HX711_SCK(x)     (x==0 ? (HX711_SCK_PORT->ODR &= (u8)(~HX711_SCK_PIN)) : (HX711_SCK_PORT->ODR |= HX711_SCK_PIN))
 #define HX711_STATE      (HX711_DOUT_PORT->IDR & HX711_DOUT_PIN)
 
+/* 1Wire Bus 
+PB6: Port B6
+*/
+#define ONEWIREBUS_PORT   GPIOB
+#define ONEWIREBUS_PIN    GPIO_PIN_6
+#define OW_LOW()  (ONEWIREBUS_PORT->ODR &= (u8)(~ONEWIREBUS_PIN))   /* drive 1-wire bus low */
+#define OW_HIGH() (ONEWIREBUS_PORT->ODR |= ONEWIREBUS_PIN)          /* release 1-wire bus */
+#define OW_READ() (u8)(ONEWIREBUS_PORT->IDR & ONEWIREBUS_PIN)       /* read 1-wire bus */
+
 // Digital OUTPUT - Test pin
 /*#define TESTPIN_PORT  GPIOA
 #define TESTPIN_PIN   GPIO_PIN_1

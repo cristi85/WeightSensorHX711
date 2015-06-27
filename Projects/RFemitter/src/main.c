@@ -13,6 +13,7 @@
 #include "errors.h"
 #include "hd44780.h"
 #include "hx711.h"
+#include "ds18b20.h"
 
 /* Defines ---------------------------------------------------------*/
 
@@ -28,32 +29,59 @@
   * None
   ******************************************************************************
   */
+const u8 ROM_ID1[8] = {0x28, 0x16, 0xAE, 0xBF, 0x3, 0x0, 0x0, 0x89};
 static u8 RMsgRcvdCnt = 0;
+static volatile _Bool FLAG_ds18b20_err = FALSE;
+static s16 temperature = 0;
+static u8 temp_intreg;
+static u8 temp_frac;
+
 void main(void)
 {
   Config();
-  enableInterrupts();
 
+  DS18B20_All_init();
+  
   LCD_Initialize();
   LCD_Clear();
   LCD_WriteString("Weight Sensor");
   LCD_Move_Cursor(2, 1);
   LCD_WriteString("Test");
-
+  FLAG_ds18b20_err = DS18B20_All_convert();
+  enableInterrupts();
+  
   while(1)
   {
     if(!HX711_STATE)  
     {
       // data ready fo retrieve
       HX711_Read();
+    }
+    if(FLAG_1000ms)
+    {
+      FLAG_1000ms = FALSE;
+      disableInterrupts();
+      DS18B20_Read_Temp(&temperature, ROM_ID1);
+      FLAG_ds18b20_err = DS18B20_All_convert();    /* issue DS18B20 convert command, to read the results after 1s */
+      enableInterrupts();
+      temp_intreg = (u8)(temperature>>4);
+      temp_frac = (u8)(temperature - (temp_intreg<<4));
+      //temp_frac can be [0-15]
+      temp_frac *= 10;  //(temp_frac * 10) / 16  Scale to [0-9]
+      temp_frac >>= 4;
       if(HX711_IsNewAvgValReady())
       {
         LCD_Clear();
-        LCD_WriteNumber(HX711_ReadAvg());
-        LCD_WriteString("  ");
+        // display weight
+        //LCD_WriteNumber(HX711_ReadAvg());
+        //LCD_WriteString("  ");
         LCD_WriteNumber(HX711_ReadAvgNoNoise());
+        // display temperature
         LCD_Move_Cursor(2, 1);
-        LCD_WriteBinary((u16)HX711_ReadAvg());
+        LCD_WriteNumber((s32)temp_intreg);
+        LCD_Write('.');
+        LCD_WriteNumber((s32)temp_frac);
+        LCD_WriteString(" C");
       }
     }
     if(RFbytesReady == TRUE)

@@ -42,6 +42,10 @@ typedef union
 /* Exported variables */
 extern RFmsg_t RcvRFmsg;
 extern u8 RFbytesReady;
+
+extern _Bool FLAG_250ms;
+extern _Bool FLAG_500ms;
+extern _Bool FLAG_1000ms;
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

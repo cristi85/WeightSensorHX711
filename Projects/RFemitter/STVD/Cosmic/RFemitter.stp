@@ -221,7 +221,7 @@ String.6.0=2011,11,23,14,32,47
 [Root.Source Files]
 ElemType=Folder
 PathName=Source Files
-Child=Root.Source Files...\..\src\hx711.c
+Child=Root.Source Files...\..\src\onewire.c
 Next=Root.Include Files
 Config.0=Root.Source Files.Config.0
 Config.1=Root.Source Files.Config.1
@@ -291,6 +291,16 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2011,11,23,14,32,47
+
+[Root.Source Files...\..\src\onewire.c]
+ElemType=File
+PathName=..\..\src\onewire.c
+Next=Root.Source Files...\..\src\ds18b20.c
+
+[Root.Source Files...\..\src\ds18b20.c]
+ElemType=File
+PathName=..\..\src\ds18b20.c
+Next=Root.Source Files...\..\src\hx711.c
 
 [Root.Source Files...\..\src\hx711.c]
 ElemType=File
@@ -369,7 +379,7 @@ PathName=..\..\src\stm8s_it.c
 [Root.Include Files]
 ElemType=Folder
 PathName=Include Files
-Child=Root.Include Files...\..\src\hx711.h
+Child=Root.Include Files...\..\src\onewire.h
 Config.0=Root.Include Files.Config.0
 Config.1=Root.Include Files.Config.1
 
@@ -438,6 +448,16 @@ String.3.0=
 String.4.0=
 String.5.0=
 String.6.0=2011,11,23,14,32,47
+
+[Root.Include Files...\..\src\onewire.h]
+ElemType=File
+PathName=..\..\src\onewire.h
+Next=Root.Include Files...\..\src\ds18b20.h
+
+[Root.Include Files...\..\src\ds18b20.h]
+ElemType=File
+PathName=..\..\src\ds18b20.h
+Next=Root.Include Files...\..\src\hx711.h
 
 [Root.Include Files...\..\src\hx711.h]
 ElemType=File
