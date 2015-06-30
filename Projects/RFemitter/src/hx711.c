@@ -20,11 +20,11 @@ void HX711_Read()
   u8 i;
   u32 mask = 0x00800000;
   hx711_raw_value = 0;
-  DELAY_US(5);
+  //DELAY_US(5);
   for(i=0; i<25;i++)
   {
     HX711_SCK(1);
-    DELAY_US(5);
+    DELAY_US(10);
     if(HX711_STATE)
     {
       if(i==0)
@@ -35,7 +35,7 @@ void HX711_Read()
       else hx711_raw_value |= mask;
     }
     HX711_SCK(0);
-    DELAY_US(5);
+    DELAY_US(8);
     mask >>= 1;
   }
   if(num_samples_to_discard_cnt < NUM_SAMPLES_TO_DISCARD)

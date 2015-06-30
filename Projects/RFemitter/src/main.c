@@ -35,6 +35,10 @@ static volatile _Bool FLAG_ds18b20_err = FALSE;
 static s16 temperature = 0;
 static u8 temp_intreg;
 static u8 temp_frac;
+static volatile u16 temp;
+static volatile s32 new_weight;
+static volatile s32 old_weight;
+static volatile s32 test;
 
 void main(void)
 {
@@ -69,19 +73,44 @@ void main(void)
       //temp_frac can be [0-15]
       temp_frac *= 10;  //(temp_frac * 10) / 16  Scale to [0-9]
       temp_frac >>= 4;
+      temp = temp_intreg*10 + temp_frac;
       if(HX711_IsNewAvgValReady())
       {
-        LCD_Clear();
+        
         // display weight
         //LCD_WriteNumber(HX711_ReadAvg());
         //LCD_WriteString("  ");
-        LCD_WriteNumber(HX711_ReadAvgNoNoise());
+        new_weight = HX711_ReadAvgNoNoise();
+        if(new_weight != old_weight)
+        {
+          if(new_weight >= old_weight)
+          {
+            test = new_weight - old_weight;
+            if((new_weight - old_weight) > (s32)50)
+            {
+              //abnormal value
+              test = test;
+            }
+          }
+          else
+          {
+            test = old_weight - new_weight;
+            if((old_weight - new_weight) > (s32)50)
+            {
+              //abnormal value
+              test = test;
+            }
+          }
+        }
+        LCD_Clear();
+        LCD_WriteNumber(new_weight);
         // display temperature
         LCD_Move_Cursor(2, 1);
         LCD_WriteNumber((s32)temp_intreg);
         LCD_Write('.');
         LCD_WriteNumber((s32)temp_frac);
         LCD_WriteString(" C");
+        old_weight = new_weight;
       }
     }
     if(RFbytesReady == TRUE)

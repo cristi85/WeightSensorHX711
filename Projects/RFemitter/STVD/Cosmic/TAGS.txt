@@ -966,9 +966,12 @@ DDR	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	258;"	member	struct
 DELAY_10US	..\..\src\delay.h	12;"	macro
 DELAY_410US	..\..\src\delay.h	8;"	macro
 DELAY_480US	..\..\src\delay.h	6;"	macro
+DELAY_55US	..\..\src\delay.h	15;"	macro
+DELAY_60US	..\..\src\delay.h	11;"	macro
 DELAY_64US	..\..\src\delay.h	10;"	macro
 DELAY_6US	..\..\src\delay.h	9;"	macro
 DELAY_70US	..\..\src\delay.h	7;"	macro
+DELAY_9US	..\..\src\delay.h	14;"	macro
 DELAY_US	..\..\src\delay.h	37;"	macro
 DGR	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2059;"	member	struct:__anon205
 DISABLE	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	224;"	enumerator	enum:__anon203
@@ -4091,7 +4094,7 @@ _highB	..\..\src\stm8s_it.c	55;"	variable	file:
 _lowB	..\..\src\stm8s_it.c	56;"	variable	file:
 _stext	..\..\src\stm8s_it.h	53;"	prototype	signature:(void)
 _vectab	..\..\src\stm8_interrupt_vector.c	15;"	variable
-assert_failed	..\..\src\main.c	141;"	function	signature:(u8* file, u32 line)
+assert_failed	..\..\src\main.c	177;"	function	signature:(u8* file, u32 line)
 assert_failed	..\..\src\stm8s_conf.h	101;"	prototype	signature:(uint8_t* file, uint32_t line)
 assert_param	..\..\src\stm8s_conf.h	103;"	macro
 assert_param	..\..\src\stm8s_conf.h	99;"	macro
@@ -4130,12 +4133,14 @@ interrupt_handler	..\..\src\stm8_interrupt_vector.c	12;"	member	struct:interrupt
 interrupt_handler_t	..\..\src\stm8_interrupt_vector.c	7;"	typedef	file:
 interrupt_instruction	..\..\src\stm8_interrupt_vector.c	11;"	member	struct:interrupt_vector	file:
 interrupt_vector	..\..\src\stm8_interrupt_vector.c	9;"	struct	file:
-main	..\..\src\main.c	39;"	function	signature:(void)
+main	..\..\src\main.c	43;"	function	signature:(void)
+new_weight	..\..\src\main.c	39;"	variable	file:
 nop	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2606;"	macro
 nop	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2615;"	macro
 nop	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2625;"	macro
 num_samples_cnt	..\..\src\hx711.c	14;"	variable	file:
 num_samples_to_discard_cnt	..\..\src\hx711.c	15;"	variable	file:
+old_weight	..\..\src\main.c	40;"	variable	file:
 rim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2604;"	macro
 rim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2613;"	macro
 rim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2623;"	macro
@@ -4145,10 +4150,12 @@ s8	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	213;"	typedef
 sim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2605;"	macro
 sim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2614;"	macro
 sim	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2624;"	macro
+temp	..\..\src\main.c	38;"	variable	file:
 temp2	..\..\src\stm8s_it.c	61;"	variable	file:
 temp_frac	..\..\src\main.c	37;"	variable	file:
 temp_intreg	..\..\src\main.c	36;"	variable	file:
 temperature	..\..\src\main.c	35;"	variable	file:
+test	..\..\src\main.c	41;"	variable	file:
 trap	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2607;"	macro
 trap	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2616;"	macro
 trap	..\..\..\..\libraries\stm8s_stdperiph_driver\inc\stm8s.h	2626;"	macro
